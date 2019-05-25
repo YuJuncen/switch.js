@@ -2,7 +2,7 @@ class Switch {
     constructor(item) { }
 
     case(pred, result) {
-        this.result = result;
+        if (typeof this.result === 'undefined') this.result = result;
         return this;
     }
     default(result) { return result; }

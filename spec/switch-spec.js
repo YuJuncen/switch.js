@@ -8,15 +8,26 @@ describe('match function tests.', () => {
     })
 
     it ('Should match some case if there are.', () => {
-        expect(match(1)
+        const value = match(1)
             .case(x => x > 0, 'x > 0')
-            .run()).toEqual('x > 0');
+            .run();
+        expect(value).toEqual('x > 0');
     })
 
     it('Should match some case even there are more cases.', () => {
-        expect(match(1)
+        const value = match(1)
             .case(x => x > 0, true)
             .case(x => x < 0, false)
-            .run()).toBe(true);
+            .run();
+        expect(value).toBe(true);
+    })
+
+    it('Should match the first one if there are more than one matches.', () => {
+        expect(match(1)
+            .case(x => x < 0, 0)
+            .case(x => x >= 0, 1)
+            .case(x => x >= 1, 2)
+            .run()
+        ).toBe(1);
     })
 })
