@@ -1,9 +1,14 @@
 class Switch {
     constructor(item) { }
 
-    case(pred, result) { }
+    case(pred, result) {
+        this.result = result;
+        return this;
+    }
     default(result) { return result; }
-    run() { }
+    run() { 
+        return this.result;
+    }
 }
 
 const match = (item) => new Switch(item);

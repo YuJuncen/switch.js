@@ -11,3 +11,10 @@ it ('Should match some case if there are.', () => {
         .case(x => x > 0, 'x > 0')
         .run(), 'x > 0');
 })
+
+it ('Should match some case even there are more cases.', () => {
+    expect(match(1)
+        .case(x => x > 0, 'x > 0')
+        .case(x => x < 0, 'x < 0')
+        .run(), 'x < 0')
+})
