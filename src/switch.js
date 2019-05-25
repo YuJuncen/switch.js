@@ -3,12 +3,19 @@ class Switch {
         this.item = item;
         this.isMatched = false;
     }
+    
     case(pred, result) {
-        if (!this.isMatched && pred(this.item)) {
-            this.isMatched = true;
-            this.result = result;
+        if (!this.isMatched) {
+            if (this.testPred(pred)) {
+                this.isMatched = true;
+                this.result = result;
+            }
         }
         return this;
+    }
+    testPred(pred) {
+        return typeof pred === 'function' && pred(this.item)
+            || pred === this.item;
     }
     default(result) { 
         if (this.isMatched)

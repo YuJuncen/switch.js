@@ -46,4 +46,12 @@ describe('match function tests.', () => {
             .run()
         }).toThrow()
     })
+
+    it("Case function should accept plain values.", () => {
+        const value = match(1)
+            .case(0, 'success')
+            .case(1, 'failed')
+            .default('unknown.');
+        expect(value).toEqual('failed');
+    })
 })
