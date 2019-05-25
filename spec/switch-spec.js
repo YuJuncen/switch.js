@@ -30,4 +30,13 @@ describe('match function tests.', () => {
             .run()
         ).toBe(1);
     })
+
+    it("Should give the default value if there isn't any match, vice versa.", () => {
+        expect(match(1)
+            .case(x => x < 10, 1)
+            .default(0)).toBe(1)
+        expect(match(0)
+            .case(x => x > 10, 0)
+            .default(1)).toBe(1)
+    })
 })

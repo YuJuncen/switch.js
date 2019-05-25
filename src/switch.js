@@ -1,8 +1,10 @@
 class Switch {
-    constructor(item) { }
-
+    constructor(item) {
+        this.item = item;
+    }
     case(pred, result) {
-        if (typeof this.result === 'undefined') this.result = result;
+        if (typeof this.result === 'undefined' && pred(this.item)) 
+            this.result = result;
         return this;
     }
     default(result) { return result; }
