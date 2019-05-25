@@ -1,15 +1,24 @@
 class Switch {
     constructor(item) {
         this.item = item;
+        this.isMatched = false;
     }
     case(pred, result) {
-        if (typeof this.result === 'undefined' && pred(this.item)) 
+        if (!this.isMatched && pred(this.item)) {
+            this.isMatched = true;
             this.result = result;
+        }
         return this;
     }
-    default(result) { return result; }
+    default(result) { 
+        if (this.isMatched)
+            return this.result; 
+        return result;
+    }
     run() { 
-        return this.result;
+        if (this.isMatched)
+            return this.result;
+        throw new Error('unexhausted pattern.');
     }
 }
 

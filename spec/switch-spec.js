@@ -39,4 +39,11 @@ describe('match function tests.', () => {
             .case(x => x > 10, 0)
             .default(1)).toBe(1)
     })
+
+    it("Should throw if there is neither any match nor default case.", () => {
+        expect(() => {match(1)
+            .case(x => x > 10)
+            .run()
+        }).toThrow()
+    })
 })
